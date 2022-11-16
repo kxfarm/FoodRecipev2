@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateRecipe"
+    android:background="@color/background"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="Create Recipe"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ImageView
+        android:id="@+id/addImage"
+        android:layout_width="270dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle"></ImageView>
+
+    <Button
+        android:id="@+id/btnAddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:background="@color/transparent"
+        android:fontFamily="@font/montserrat"
+        android:text="Add Image"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="612dp"
+        android:background="@color/transparent"
+        android:fontFamily="@font/montserrat"
+        android:text="Submit"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
+
+    <EditText
+        android:id="@+id/etStep"
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        android:layout_marginTop="256dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Here to enter step for cooking the food"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
+
+    <EditText
+        android:id="@+id/etFoodTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Name of the Recipe"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
+
+    <EditText
+        android:id="@+id/etIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Here to enter the Ingredient needed"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
