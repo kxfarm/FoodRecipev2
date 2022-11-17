@@ -1,36 +1,58 @@
 package com.example.foodrecipev2
 
-import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.google.firebase.database.ValueEventListener
+import java.io.Serializable
 import java.util.*
 
 
-class RecipeAdapter(){
-    /*private val imagesList: ArrayList<Recipe>,
-    private val context: ValueEventListener
-    ): RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
+class RecipeAdapter(private val recipeList : ArrayList<Recipe>) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
 
-    class RecipeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val image: ImageView =itemView.findViewById(R.id.listview)
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
+        return MyViewHolder(itemView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_rv,parent,false)
-        return RecipeViewHolder(itemView)
-    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentItem = recipeList[position]
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        Glide.with(context).load(imagesList[position].name).into(holder.image)
+        holder.name.text = currentItem.name
+        holder.step.text = currentItem.step
+        //holder.ingredient.text = currentItem.ingredient
+        holder.btn.setOnClickListener(View.OnClickListener {
+
+            /*val intent = Intent(this, UpdateActivity::class.java)
+            intent.putExtra("Key", recipeList as Serializable?)
+            startActivity(intent)*/
+
+            /*startActivity(Intent(this, UpdateActivity::class.java).apply {
+                putExtra("Key", recipeList as Serializable?)
+            })*/
+
+        })
+
+
+
+
     }
 
     override fun getItemCount(): Int {
-        return imagesList.size
-    }*/
+        return recipeList.size
+
+    }
+
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val name : TextView = itemView.findViewById(R.id.titleTv)
+        val step : TextView = itemView.findViewById(R.id.StepTv)
+        val btn : Button = itemView.findViewById(R.id.buttonNext)
+        //val ingredient : TextView = itemView.findViewById(R.id.IngredientTv)
+
+    }
+
 }

@@ -30,6 +30,7 @@ class CreateRecipe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //Auth
         auth = FirebaseAuth.getInstance()
@@ -56,39 +57,11 @@ class CreateRecipe : AppCompatActivity() {
             val etIngredient = binding.etIngredient.text.toString()
             val uid = auth.currentUser?.uid.toString()
             if (name != null && etStep != null && etIngredient != null && ImageUrl != null) {
-                progressDialog.setMessage("$key")
+                progressDialog.setMessage("Uploading...")
                 progressDialog.setCancelable(false)
                 progressDialog.show()
 
                 val storageReference = FirebaseStorage.getInstance().getReference()
-                val ref = storageReference.child("recipe/$key")
-                val uploadTask = FirebaseStorage.getInstance().reference.child("recipe").child(key)
-                    .putFile(ImageUrl)
-
-
-                uploadTask.addOnFailureListener {
-                    // Handle unsuccessful uploads
-                    Toast.makeText(baseContext, "Failed to upload", Toast.LENGTH_LONG).show()
-                }.addOnSuccessListener {
-                    //Toast.makeText(baseContext, "Image uploaded", Toast.LENGTH_LONG).show()
-                    var downloadUrl: Uri? = null
-                    FirebaseStorage.getInstance().reference.child("recipe").child("1")
-                        .downloadUrl.addOnSuccessListener { it1 ->
-                            downloadUrl = it1
-
-                        }
-                    val recipe = Recipe(name, etStep, etIngredient)
-                    databaseReference.child(key).setValue(recipe).addOnCompleteListener {
-
-                        /*val push = databaseReference.push();
-                        push.child("Recipe Image").setValue(downloadUrl)*/
-
-                        Toast.makeText(this, "$downloadUrl!", Toast.LENGTH_LONG).show()
-                        startActivity(Intent(this, HomeActivity::class.java))
-
-
-                    }}
-                    /*val storageReference = FirebaseStorage.getInstance().getReference()
                 val ref = storageReference.child("recipe/$key")
                 val uploadTask = ref.putFile(ImageUrl)
 
@@ -96,29 +69,29 @@ class CreateRecipe : AppCompatActivity() {
                     // Handle unsuccessful uploads
                     Toast.makeText(baseContext, "Failed to upload", Toast.LENGTH_LONG).show()
                 }.addOnSuccessListener {
-                    //Toast.makeText(
-                        //baseContext, "Image uploaded",
-                        //Toast.LENGTH_LONG
-                    //).show()
-                    var downloadLink: Uri? = null
-                    FirebaseStorage.getInstance().reference.child("recipe").child("1")
+                    Toast.makeText(baseContext, "Image uploaded", Toast.LENGTH_LONG).show()
+
+                    //Not Working
+                    var downloadUrl: Uri? = null
+                    /*FirebaseStorage.getInstance().reference.child("recipe").child(key)
                         .downloadUrl.addOnSuccessListener { it1 ->
-
-                            downloadLink = it1
-                            }
-                        val recipe = Recipe(name,etStep,etIngredient)
+                            downloadUrl = it1
+                            }*/
+                        val uid = auth.currentUser?.uid.toString()
+                        val recipe = Recipe(name,etStep,etIngredient,uid)
                         databaseReference.child(key).setValue(recipe).addOnCompleteListener{
-
+                        //Not Working
                         /*val push = databaseReference.push();
                         push.child("Recipe Image").setValue(downloadUrl)*/
-
-                        Toast.makeText(this,"$downloadLink!",Toast.LENGTH_LONG).show()
+                        progressDialog.dismiss()
+                        Toast.makeText(this,"Success!",Toast.LENGTH_LONG).show()
                         startActivity(Intent(this,HomeActivity::class.java))
+
                         }
 
 
 
-                }*/
+                }
 
                     /* val t = storageReference.downloadUrl.getResult().toString();
                         val push = databaseReference.push();
@@ -127,7 +100,9 @@ class CreateRecipe : AppCompatActivity() {
                         push.child("Recipe Ingredient").setValue(etIngredient)
                         push.child("Recipe Image").setValue(t)*/
 
-                }
+                }else{
+                Toast.makeText(this,"Failed Submitting!",Toast.LENGTH_LONG).show()
+            }
 
             }
         }
